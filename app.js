@@ -1,81 +1,72 @@
-const _ = e => document.querySelector(e)
-
-const render = _('.result')
-
+const _ = e => document.querySelector(e);
+const render = _('.result');
+ 
+ 
 // create video
-// rendering video in the browser
-const createVideo = data =>{
-    let video = document.createElement('video')
-    video.id = 'instaVideo'
-    // data is the data of the video which we will get by fetch()
-    video.src = data.content
-    video.controls = true
-    video.autoplay = true
-
-    // create Info 
-
-    let info = document.createElement('p')
-    info.textContent = 'Click on right button on video and select save as.'
-
-    render.innerHTML = ''
-    render.appendChild(video)
-    render.appendChild(info)
-}
-
+const createVideo = data => {
+  let v = document.createElement('video');
+  v.id = "instavideo";
+  v.src = data.content; 
+  v.controls = true;
+  v.autoplay = true;
+ 
+  // create info
+  let info = document.createElement('p');
+  info.textContent = "Click the right button on video and select save as.";
+ 
+  render.innerHTML = ""; 
+  render.appendChild(v);
+  render.appendChild(info);
+};
 // create image
-// rendering image in the browser
-const createImage = data =>{
-    // create image
-    let img = document.createElement('img')
-    img.id = 'instaImg'
-    img.src = data.content
-
-    // create info
-    let info = document.createElement('p')
-    info.textContent = 'Click on right button on image and select save as.'
-
-    render.innerHTML = ''
-    render.appendChild(img)
-    render.appendChild(info)
-}
-
-
+const createImg = data => {
+  // create image
+  let i = document.createElement('img');
+  i.id = "instaImg";
+  i.src = data.content;
+ 
+  // create info
+  let info = document.createElement('p');
+  info.textContent = "Click the right button on the image and select save image..";
+ 
+  render.innerHTML = ""; 
+  render.appendChild(i); 
+  render.appendChild(info); 
+ 
+};
+ 
 // extract html
-
-const getMedia = () =>{
-    render.innerHTML = '<div class="image-placeholder"></div>'
-    // get input value
-    let url = _('input').value
-
-    if(url){
-        // api call
-        fetch(url)
-        .then(response => response.text())
-        .then(response =>{
-            // render html
-            render.innerHTML = response
-            // wait, find meta and create video or image
-            let wait = setTimeout(()=>{
-                let video = _('meta[property="og:video"]')
-                if(video){
-                    createVideo(video)
-                }else{
-                    let img = _('meta[property="og:image"]')
-                    if(img){
-                        createImage(img)
-                    }else{
-                        document.body.innerHTML = body
-                        alert('error extracting')
-                    }
-                }
-                clearTimeout(wait)
-            },2000)
-        })
-    }else{
-        _('input').setAttribute('placeholder','invlidAddress link')
-    }
-}
-
-
+const getMedia = () => {
+  render.innerHTML = "<div class='image-placeholder'></div>";
+  // get input value
+  let url = _('input').value;
+  if (url) {
+    fetch(url).
+    then(r => r.text()).
+    then(r => {
+      // render html
+      render.innerHTML = r;
+      // wait, find meta and create video or image
+      let w = setTimeout(() => {
+        let v = _('meta[property="og:video"]');
+        if (v) {
+          createVideo(v);
+        } else {
+          let img = _('meta[property="og:image"]');
+          if (img) {
+            createImg(img);
+          } else {
+            document.body.innerHTML = body;
+            alert('Error extracting Instagram image / video.');
+          };
+        }
+        clearTimeout(w);
+      }, 200);
+    });
+  } else {
+    _('input').setAttribute('placeholder', 'Invalid address, use a proper Insagram link');
+ 
+  }
+};
 
 
