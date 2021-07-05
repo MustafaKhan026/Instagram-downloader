@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  position: relative;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "consolas",monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #f9f9f9;
+  color: #333;
+}
+code {
+  background: #208bfd;
+  color: #f9f9f9;
+  padding: 0.1em 0.5em;
+  border-radius: 4px;
+}
+.image-placeholder {
+  margin: auto;
+  width: 89%;
+  max-width: 500px;
+  display: block;
+  height: 380px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-image: url(https://webdevtrick.com/wp-content/uploads/image-placeholder.png);
+}
+@media (max-width: 420px) {
+  .image-placeholder {
+    width: 320px;
+    max-width: 320px;
+    height: 280px;
+    background-size: contain;
+    background-position: top left;
+    background-attachment: scroll;
+  }
+}
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4em;
+  background: #208bfd;
+  margin: 0 auto;
+  text-align: center;
+  color: #f9f9f9;
+}
+::placeholder {
+  color: #212121;
+}
+input {
+  display: inline-block;
+  width: 100%;
+  max-width: 50%;
+  max-width: calc(100% - 8em);
+  min-height: 2.8em;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  background: #f3f3f3;
+  border-color: #208bfd;
+  border-width: 1px;
+  color: #212121;
+  transition: all 500ms ease;
+}
+input:focus, input:hover {
+  border-color: #208bfd;
+  transition: all 500ms ease;
+}
+ 
+@media (min-width: 420px) {
+  input {
+    max-width: 50%;
+  }
+}
+.search {
+  display: inline-block;
+  padding: 0 1em;
+  text-align: center;
+  min-width: 2.8em;
+  height: 2.8em;
+  margin: 0;
+  background: #208bfd;
+  border: 2px solid #212121;
+  color: #f9f9f9;
+  transition: all 500ms ease;
+}
+.search:focus, .search:hover {
+  background: #212121;
+  border-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+.result {
+  margin: 0 auto;
+  padding: 4em 1em;
+  max-width: 40em;
+}
+.result video, .result img {
+  width: calc(100% - 4em);
+  margin: 2em;
+}
+.result .download {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5em 1em;
+  background: #208bfd;
+  border-color: #208bfd;
+  border-width: 1px;
+  color: #f9f9f9;
+  transition: all 500ms ease;
+}
+.result .download:focus, .result .download:hover {
+  background: #208bfd;
+  border-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+@media (max-width: 600px) {
+  .result {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    right: 0;
+    height: calc(100% - 10em);
+    overflow-y: auto;
+    max-width: 40em;
+    background: #f9f9f9;
+    margin: auto;
+  }
+}
+footer {
+  width: 100%;
+  margin: 2em auto;
+  text-align: center;
+}
+ 
+@media (max-width: 600px) {
+  footer {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+    height: 2em;
+  }
+}
